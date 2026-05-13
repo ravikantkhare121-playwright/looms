@@ -12,9 +12,9 @@ export class HomePage extends BasePage {
     //loginPopupCloseBtn = this.page.locator("button:has(svg.lucide-x)");
     loginPopupCloseBtn =this.page.locator("button.absolute.top-4.right-4");
 
-    logo =   this.page.locator("//img[@alt='Loom Fashion']")
+    logo = this.page.locator("//img[@alt='Loom Fashion']")
 
-    searchBox =   this.page.getByPlaceholder('Search...').nth(0);
+    searchBox = this.page.getByPlaceholder('Search...').nth(0);
 
     //menMenu = this.page.locator("//button[@class='p-2 text-black']//*[name()='svg']");
     menMenu = this.page.locator("//button[contains(@class,'p-2')]").first();
