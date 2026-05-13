@@ -28,6 +28,7 @@ export class HomePage extends BasePage {
     }
      async verifyHomePageUI(){
         await this.isElementVisible(this.logo);
+        console.log("hello git")
 
      }
 
