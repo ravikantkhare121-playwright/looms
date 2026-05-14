@@ -38,6 +38,10 @@ export class HomePage extends BasePage {
     }
 
     async verifyAllMenuOptions() {
+
+         if (await this.loginPopupCloseBtn.isVisible()) {
+        await this.loginPopupCloseBtn.click({ force: true });
+    }
         await this.hoverElement(this.menMenu);
         await this.page.waitForTimeout(2000);
         const totalOptions =await this.menuOptions.count();
@@ -60,9 +64,7 @@ export class HomePage extends BasePage {
         await this.page.waitForLoadState('domcontentloaded');  
 
          Logger.info(`Navigated URL : ${this.page.url()}`);
-       await this.handleOptionalPopup(
-    this.loginPopupCloseBtn
-);
+       await this.handleOptionalPopup(this.loginPopupCloseBtn);
         
          
         
