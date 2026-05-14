@@ -17,8 +17,8 @@ export class HomePage extends BasePage {
     searchBox = this.page.getByPlaceholder('Search...').nth(0);
 
     //menMenu = this.page.locator("//button[@class='p-2 text-black']//*[name()='svg']");
-    menMenu = this.page.locator("//button[contains(@class,'p-2')]").first();
-    menuOptions = this.page.locator("//div[contains(@class,'overflow-y-auto')]//div[contains(@class,'cursor-pointer') and normalize-space()]");
+    menMenu =   this.page.locator("//button[contains(@class,'p-2')]").first();
+    menuOptions =    this.page.locator("//div[contains(@class,'overflow-y-auto')]//div[contains(@class,'cursor-pointer') and normalize-space()]");
 
     // Methods
 
