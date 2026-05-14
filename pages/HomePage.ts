@@ -9,14 +9,14 @@ export class HomePage extends BasePage {
     }
 
     // Locators
-    //loginPopupCloseBtn = this.page.locator("button:has(svg.lucide-x)");
+    
     loginPopupCloseBtn =this.page.locator("button.absolute.top-4.right-4");
 
     logo =   this.page.locator("//img[@alt='Loom Fashion']")
 
     searchBox = this.page.getByPlaceholder('Search...').nth(0);
 
-    //menMenu = this.page.locator("//button[@class='p-2 text-black']//*[name()='svg']");
+    
     menMenu =   this.page.locator("//button[contains(@class,'p-2')]").first();
     menuOptions =    this.page.locator("//div[contains(@class,'overflow-y-auto')]//div[contains(@class,'cursor-pointer') and normalize-space()]");
 
@@ -42,7 +42,7 @@ export class HomePage extends BasePage {
          if (await this.loginPopupCloseBtn.isVisible()) {
         await this.loginPopupCloseBtn.click({ force: true });
     }
-        await this.hoverElement(this.menMenu);
+       await this.hoverElement(this.menMenu, this.loginPopupCloseBtn);
         await this.page.waitForTimeout(2000);
         const totalOptions =await this.menuOptions.count();
        Logger.info(`Clicking on : ${totalOptions}`)
@@ -50,7 +50,7 @@ export class HomePage extends BasePage {
        for(let i =0; i<totalOptions;i++)
         {
        
-        await this.hoverElement(this.menMenu);
+       await this.hoverElement(this.menMenu, this.loginPopupCloseBtn);
         const option = this.menuOptions.nth(i);
         const optionText =await option.textContent();
         Logger.info(`Clicking on : ${optionText}`);
@@ -61,10 +61,12 @@ export class HomePage extends BasePage {
         const currentUrl =this.page.url();
         Logger.info(`Navigated URL : ${currentUrl}`);
         await this.page.goBack();
-        await this.page.waitForLoadState('domcontentloaded');  
+         await this.page.waitForLoadState('networkidle');
 
+            await this.page.waitForTimeout(3000); 
+            await this.handleOptionalPopup(this.loginPopupCloseBtn);
          Logger.info(`Navigated URL : ${this.page.url()}`);
-       await this.handleOptionalPopup(this.loginPopupCloseBtn);
+      
         
          
         

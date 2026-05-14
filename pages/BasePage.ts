@@ -63,8 +63,23 @@ export class BasePage {
         await expect(this.page).toHaveTitle(title);
     }
 
-    async hoverElement(locator:Locator){
+    async hoverElement(locator:Locator, popupCloseBtn?: Locator){
         Logger.info('Hovering on element')
+        if (popupCloseBtn) {
+
+        if (await popupCloseBtn.isVisible().catch(() => false)) {
+
+            Logger.info('Popup detected');
+
+            await popupCloseBtn.click({ force: true });
+
+            Logger.info('Popup closed');
+
+            await this.page.waitForTimeout(2000);
+        }
+    }
+
+
         await locator.waitFor({state:'visible',timeout:1000});
         await locator.hover();
     }
